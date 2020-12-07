@@ -24,14 +24,14 @@ def face2mask(imgs_face):
     
     imgs_masked = []
     for img_face in imgs_face:
-        img_face = cv2.cvtColor(img_face, cv2.COLOR_BGR2RGB)
-        img_face = torch.from_numpy(img_face.astype(np.float32))
-        img_face = img_face / 255
+        img_face = cv2.cvtColor(img_face, cv2.COLOR_BGR2RGB).astype(np.float32)
+        img_face = (img_face/255*2) - 1
+        img_face = torch.from_numpy(img_face)
         img_face = img_face.permute(2,0,1).unsqueeze(0)
         img_face = net(img_face)
-        img_face = img_face.squeeze(0).permute(1,2,0).detach().numpy()*255
+        img_face = img_face.squeeze(0).permute(1,2,0).detach().numpy()
+        img_face = (img_face+1)/2*255
         img_face = img_face.astype('uint8')
-        img_face[img_face<0] = 0
         img_face = cv2.cvtColor(img_face, cv2.COLOR_RGB2BGR)
         imgs_masked.append(img_face)
     
