@@ -12,6 +12,7 @@ from preprocess import return_face
 
 
 st.title('face2mask')
+st.text('※画像が表示されない場合は、右上のメニューからRerunしてください。')
 
 uploaded_file = st.file_uploader('マスクを付与したい画像を選択してください。', type=['jpg','png','jpeg'])
 if uploaded_file is not None:
