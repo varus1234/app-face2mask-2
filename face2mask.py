@@ -10,7 +10,6 @@ import functools
 
 
 
-@st.cache(allow_output_mutation=True)
 # face2mask
 def face2mask(imgs_face):
     url = 'https://www.dropbox.com/s/evg6btd2d7h8a9o/120_net_G.pth?dl=1'

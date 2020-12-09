@@ -3,14 +3,13 @@ import cv2
 
 
 
-@st.cache(allow_output_mutation=True)
 # detect and cut face
 def detect_face(img):
     cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     img_g = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = cascade.detectMultiScale(img_g, minNeighbors=3, scaleFactor=1.1)
     
-    if faces == []:
+    if faces == ():
         return None, None
     
     height, width = img.shape[:2]
